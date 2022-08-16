@@ -143,3 +143,27 @@ All the Power Pivot sheets are loaded into Excel worksheets to build Pivot Table
 Each Power Pivot sheet corresponds to Excel worksheet which has Pivot Tables.
 
 ![image](https://user-images.githubusercontent.com/99619460/184941142-68f6b770-7dcd-49b2-8e6c-8f1bce9578b7.png)
+
+### 6. Data Automation
+
+Using VBA, data will refresh and exported into a new workbook. 
+
+#### 6.1. Data Refresh 
+
+**Example 1**
+
+The macro in the below screenshot will refresh data based on the region that is selected.
+
+![image](https://user-images.githubusercontent.com/99619460/184941389-ceed884a-eb25-4abe-835e-86af0c4b5647.png)
+
+VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_refresh_1
+
+**Example 2**
+
+The macro in the below screenshot will refresh data based on the country that is selected.
+
+![image](https://user-images.githubusercontent.com/99619460/184941808-fba28921-d74b-4e4e-ac97-042470dbd202.png)
+
+VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_refresh_2
+
+
