@@ -1,0 +1,5 @@
+Sub TotalPopBySex_RefreshData()
+
+    ThisWorkbook.Connections("Query - DB_TotalPopBySex").Refresh
+
+End Sub
