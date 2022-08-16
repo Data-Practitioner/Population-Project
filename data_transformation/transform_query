@@ -1,0 +1,220 @@
+TQ_PopUrban&CapitalCities
+    let
+	    Source = #"EQ_PopUrban&CapitalCities",
+	    #"Added Conditional Column" = Table.AddColumn(Source, "Location New", each if [Location] = "Total, all countries or areas" then "WORLD" else if [Location] = "Sub-Saharan Africa" then "SUB-SAHARAN AFRICA" else if [Location] = "Latin America & the Caribbean" then "Latin America and the Caribbean" else if [Location] = "South-eastern Asia" then "South-Eastern Asia" else if [Location] = "Australia and New Zealand" then "AUSTRALIA/NEW ZEALAND" else if [Location] = "Bolivia (Plurin. State of)" then "Bolivia (Plurinational State of)" else if [Location] = "Bonaire, St. Eustatius & Saba" then "Bonaire, Sint Eustatius and Saba" else if [Location] = "Côte d’Ivoire" then "Côte d'Ivoire" else if [Location] = "Dem. People's Rep. Korea" then "Dem. People's Republic of Korea" else if [Location] = "Dem. Rep. of the Congo" then "Democratic Republic of the Congo" else if [Location] = "Lao People's Dem. Rep." then "Lao People's Democratic Republic" else if [Location] = "Saint Vincent & Grenadines" then "Saint Vincent and the Grenadines" else if [Location] = "TFYR of Macedonia" then "North Macedonia" else if [Location] = "United Rep. of Tanzania" then "United Republic of Tanzania" else if [Location] = "Venezuela (Boliv. Rep. of)" then "Venezuela (Bolivarian Republic of)" else [Location]),
+	    #"Pivoted Column" = Table.Pivot(#"Added Conditional Column", List.Distinct(#"Added Conditional Column"[Series]), "Series", "Value", List.Sum),
+	    #"Removed Columns" = Table.RemoveColumns(#"Pivoted Column",{"Capital city population (thousands)"}),
+	    #"Divided Column" = Table.TransformColumns(#"Removed Columns", {{"Urban population (percent)", each _ / 100, type number}}),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Divided Column",{{"Urban population (percent)", Percentage.Type}}),
+	    #"Added Custom" = Table.AddColumn(#"Changed Type", "Rural Population %", each (1 - [#"Urban population (percent)"])),
+	    #"Changed Type1" = Table.TransformColumnTypes(#"Added Custom",{{"Rural Population %", Percentage.Type}}),
+	    #"Removed Columns1" = Table.RemoveColumns(#"Changed Type1",{"Location"}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns1",{{"Location New", "Location"}, {"Urban population (percent)", "Urban Population %"}}),
+	    #"Changed Type2" = Table.TransformColumnTypes(#"Renamed Columns",{{"Location", type text}})
+	in
+	    #"Changed Type2"
+
+TQ_PopSurfaceArea&Density
+    let
+	  Source = #"EQ_PopSurfaceArea&Density",
+	  #"Added Conditional Column" = Table.AddColumn(
+	    Source,
+	    "Location New",
+	    each
+	      if [Location] = "Bolivia (Plurin. State of)" then
+	        "Bolivia (Plurinational State of)"
+	      else if [Location] = "Bonaire, St. Eustatius & Saba" then
+	        "Bonaire, Sint Eustatius and Saba"
+	      else if [Location] = "Côte d’Ivoire" then
+	        "Côte d'Ivoire"
+	      else if [Location] = "Dem. People's Rep. Korea" then
+	        "Dem. People's Republic of Korea"
+	      else if [Location] = "Dem. Rep. of the Congo" then
+	        "Democratic Republic of the Congo"
+	      else if [Location] = "Lao People's Dem. Rep." then
+	        "Lao People's Democratic Republic"
+	      else if [Location] = "Saint Vincent & Grenadines" then
+	        "Saint Vincent and the Grenadines"
+	      else if [Location] = "TFYR of Macedonia" then
+	        "North Macedonia"
+	      else if [Location] = "United Rep. of Tanzania" then
+	        "United Republic of Tanzania"
+	      else if [Location] = "Venezuela (Boliv. Rep. of)" then
+	        "Venezuela (Bolivarian Republic of)"
+	      else
+	        [Location]
+	  ),
+	  #"Pivoted Column" = Table.Pivot(
+	    #"Added Conditional Column",
+	    List.Distinct(#"Added Conditional Column"[Series]),
+	    "Series",
+	    "Value",
+	    List.Sum
+	  ),
+	  #"Removed Columns" = Table.RemoveColumns(
+	    #"Pivoted Column",
+	    {
+	      "Location",
+	      "Population aged 0 to 14 years old (percentage)",
+	      "Population aged 60+ years old (percentage)",
+	      "Surface area (thousand km2)"
+	    }
+	  ),
+	  #"Renamed Columns" = Table.RenameColumns(
+	    #"Removed Columns",
+	    {
+	      {"Location New", "Location"},
+	      {"Population mid-year estimates (millions)", "Total Population (Millions)"},
+	      {"Population mid-year estimates for males (millions)", "Male Population (Millions)"},
+	      {"Population mid-year estimates for females (millions)", "Female Population (Millions)"},
+	      {"Sex ratio (males per 100 females)", "Sex Ratio (Males/100 Females)"},
+	      {"Population density", "Population Density"}
+	    }
+	  ),
+	  #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns", {{"Location", type text}}),
+	  #"Inserted Multiplication" = Table.AddColumn(
+	    #"Changed Type",
+	    "Multiplication",
+	    each [#"Total Population (Millions)"] * 1000000,
+	    type number
+	  ),
+	  #"Renamed Columns1" = Table.RenameColumns(
+	    #"Inserted Multiplication",
+	    {{"Multiplication", "Total Population"}}
+	  ),
+	  #"Inserted Multiplication1" = Table.AddColumn(
+	    #"Renamed Columns1",
+	    "Multiplication",
+	    each [#"Male Population (Millions)"] * 1000000,
+	    type number
+	  ),
+	  #"Renamed Columns2" = Table.RenameColumns(
+	    #"Inserted Multiplication1",
+	    {{"Multiplication", "Male Population"}}
+	  ),
+	  #"Inserted Multiplication2" = Table.AddColumn(
+	    #"Renamed Columns2",
+	    "Multiplication",
+	    each [#"Female Population (Millions)"] * 1000000,
+	    type number
+	  ),
+	  #"Renamed Columns3" = Table.RenameColumns(
+	    #"Inserted Multiplication2",
+	    {{"Multiplication", "Female Population"}}
+	  ),
+	  #"Changed Type1" = Table.TransformColumnTypes(
+	    #"Renamed Columns3",
+	    {
+	      {"Total Population", Int64.Type},
+	      {"Male Population", Int64.Type},
+	      {"Female Population", Int64.Type}
+	    }
+	  )
+	in
+	  #"Changed Type1"
+
+TQ_PopFertility&Mortality
+    let
+	    Source = #"EQ_PopFertility&Mortality",
+	    #"Added Conditional Column" = Table.AddColumn(Source, "Location New", each if [Location] = "Total, all countries or areas" then "WORLD" else if [Location] = "Sub-Saharan Africa" then "SUB-SAHARAN AFRICA" else if [Location] = "Latin America & the Caribbean" then "Latin America and the Caribbean" else if [Location] = "South-eastern Asia" then "South-Eastern Asia" else if [Location] = "Australia and New Zealand" then "AUSTRALIA/NEW ZEALAND" else if [Location] = "Bolivia (Plurin. State of)" then "Bolivia (Plurinational State of)" else if [Location] = "Bonaire, St. Eustatius & Saba" then "Bonaire, Sint Eustatius and Saba" else if [Location] = "Côte d’Ivoire" then "Côte d'Ivoire" else if [Location] = "Dem. People's Rep. Korea" then "Dem. People's Republic of Korea" else if [Location] = "Dem. Rep. of the Congo" then "Democratic Republic of the Congo" else if [Location] = "Lao People's Dem. Rep." then "Lao People's Democratic Republic" else if [Location] = "Saint Vincent & Grenadines" then "Saint Vincent and the Grenadines" else if [Location] = "TFYR of Macedonia" then "North Macedonia" else if [Location] = "United Rep. of Tanzania" then "United Republic of Tanzania" else if [Location] = "Venezuela (Boliv. Rep. of)" then "Venezuela (Bolivarian Republic of)" else [Location]),
+	    #"Pivoted Column" = Table.Pivot(#"Added Conditional Column", List.Distinct(#"Added Conditional Column"[Series]), "Series", "Value", List.Sum),
+	    #"Removed Columns" = Table.RemoveColumns(#"Pivoted Column",{"Location", "Population annual rate of increase (percent)"}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Location New", "Location"}, {"Total fertility rate (children per women)", "Total Fertility Rate (Children/Women)"}, {"Infant mortality for both sexes (per 1,000 live births)", "Infant Mortality (Per 1000 Live Births)"}, {"Life expectancy at birth for both sexes (years)", "Life Expectancy (Years)"}, {"Life expectancy at birth for males (years)", "Male Life Expectancy  (Years)"}, {"Life expectancy at birth for females (years)", "Female Life Expectancy (Years)"}}),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Location", type text}})
+	in
+	    #"Changed Type"
+
+TQ_Migrants&Regugees
+    let
+	    Source = #"EQ_Migrants&Regugees",
+	    #"Added Conditional Column" = Table.AddColumn(Source, "Location New", each if [Location] = "Bolivia (Plurin. State of)" then "Bolivia (Plurinational State of)" else if [Location] = "Bonaire, St. Eustatius & Saba" then "Bonaire, Sint Eustatius and Saba" else if [Location] = "Côte d’Ivoire" then "Côte d'Ivoire" else if [Location] = "Dem. People's Rep. Korea" then "Dem. People's Republic of Korea" else if [Location] = "Dem. Rep. of the Congo" then "Democratic Republic of the Congo" else if [Location] = "Lao People's Dem. Rep." then "Lao People's Democratic Republic" else if [Location] = "Saint Vincent & Grenadines" then "Saint Vincent and the Grenadines" else if [Location] = "TFYR of Macedonia" then "North Macedonia" else if [Location] = "United Rep. of Tanzania" then "United Republic of Tanzania" else if [Location] = "Venezuela (Boliv. Rep. of)" then "Venezuela (Bolivarian Republic of)" else [Location]),
+	    #"Pivoted Column" = Table.Pivot(#"Added Conditional Column", List.Distinct(#"Added Conditional Column"[Series]), "Series", "Value", List.Sum),
+	    #"Removed Columns" = Table.RemoveColumns(#"Pivoted Column",{"Location", "International migrant stock: Male (% total Population)", "International migrant stock: Female (% total Population)", "Other of concern to UNHCR (number)", "Total population of concern to UNHCR (number)"}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Location New", "Location"}, {"International migrant stock: Both sexes (number)", "International Migrants"}, {"International migrant stock: Both sexes (% total population)", "International Migrants (% Total Population)"}, {"Total refugees and people in refugee-like situations (number)", "Total Refugees"}, {"Asylum seekers, including pending cases (number)", "Asylum Seekers"}}),
+	    #"Divided Column" = Table.TransformColumns(#"Renamed Columns", {{"International Migrants (% Total Population)", each _ / 100, type number}}),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Divided Column",{{"Location", type text}, {"International Migrants", Int64.Type}, {"International Migrants (% Total Population)", Percentage.Type}, {"Total Refugees", Int64.Type}, {"Asylum Seekers", Int64.Type}})
+	in
+	    #"Changed Type"
+
+TQ_TotalPopBySex
+    let
+	    Source = EQ_TotalPopBySex,
+	    #"Changed Type" = Table.TransformColumnTypes(Source,{{"PopMale", Int64.Type}, {"PopFemale", Int64.Type}, {"PopTotal", Int64.Type}})
+	in
+	    #"Changed Type"
+
+TQ_PopIndicators
+    let
+	    Source = EQ_PopIndicators,
+	    #"Replaced Value" = Table.ReplaceValue(Source,"-",".6-",Replacer.ReplaceText,{"Time"}),
+	    #"Added Suffix" = Table.TransformColumns(#"Replaced Value", {{"Time", each _ & ".5", type text}}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Added Suffix",{{"TFR", "Total Fertility Rate (Births/Women)"}, {"Births", "Births (Thousands)"}, {"LEx", "Life Expectancy Rate"}, {"LExMale", "Male Life Expectancy Rate"}, {"LExFemale", "Female Life Expectancy Rate"}, {"Deaths", "Deaths (Thousands)"}, {"DeathsMale", "Male Deaths (Thousands)"}, {"DeathsFemale", "Female Deaths (Thousands)"}}),
+	    #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"LocID", "Location", "Time", "MidPeriod", "Total Fertility Rate (Births/Women)", "Births (Thousands)", "Life Expectancy Rate", "Male Life Expectancy Rate", "Female Life Expectancy Rate", "Deaths (Thousands)", "Male Deaths (Thousands)", "Female Deaths (Thousands)"})
+	in
+	    #"Removed Other Columns"
+
+TQ_UN_WorldLocation
+    let
+	    Source = EQ_UN_WorldLocation
+	in
+	    Source
+
+TQ_MaxPopCitiesInWorld
+    let
+	    Source = EQ_MaxPopCitiesInWorld,
+	  #"Added Conditional Column" = Table.AddColumn(
+	    Source,
+	    "Country New",
+	    each
+	      if [Country] = "Bolivia" then
+	        "Bolivia (Plurinational State of)"
+	      else if [Country] = "Czech Republic" then
+	        "Czechia"
+	      else if [Country] = "DR Congo" then
+	        "Democratic Republic of the Congo"
+	      else if [Country] = "Hong Kong" then
+	        "China, Hong Kong SAR"
+	      else if [Country] = "Iran" then
+	        "Iran (Islamic Republic of)"
+	      else if [Country] = "Ivory Coast" then
+	        "Côte d'Ivoire"
+	      else if [Country] = "Laos" then
+	        "Lao People's Democratic Republic"
+	      else if [Country] = "Macau" then
+	        "China, Macao SAR"
+	      else if [Country] = "North Korea" then
+	        "Dem. People's Republic of Korea"
+	      else if [Country] = "Palestine" then
+	        "State of Palestine"
+	      else if [Country] = "Republic of the Congo" then
+	        "Congo"
+	      else if [Country] = "Russia" then
+	        "Russian Federation"
+	      else if [Country] = "South Korea" then
+	        "Republic of Korea"
+	      else if [Country] = "Syria" then
+	        "Syrian Arab Republic"
+	      else if [Country] = "Taiwan" then
+	        "China, Taiwan Province of China"
+	      else if [Country] = "Tanzania" then
+	        "United Republic of Tanzania"
+	      else if [Country] = "United States" then
+	        "United States of America"
+	      else if [Country] = "Venezuela" then
+	        "Venezuela (Bolivarian Republic of)"
+	      else if [Country] = "Vietnam" then
+	        "Viet Nam"
+	      else
+	        [Country]
+	  ),
+	    #"Removed Columns" = Table.RemoveColumns(#"Added Conditional Column",{"Country"}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Removed Columns",{{"Country New", "Country"}, {"Name", "City"}}),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Country", type text}}),
+	    #"Merged Queries" = Table.NestedJoin(#"Changed Type", {"Country"}, TQ_UN_WorldLocation, {"Location"}, "TQ_UN_WorldLocation", JoinKind.LeftOuter),
+	    #"Expanded TQ_UN_WorldLocation" = Table.ExpandTableColumn(#"Merged Queries", "TQ_UN_WorldLocation", {"Region"}, {"Region"}),
+	    #"Filtered Rows" = Table.SelectRows(#"Expanded TQ_UN_WorldLocation", each true),
+	    #"Reordered Columns" = Table.ReorderColumns(#"Filtered Rows",{"Rank", "Region", "Country", "City", "2020 Population"}),
+	    #"Sorted Rows" = Table.Sort(#"Reordered Columns",{{"Rank", Order.Ascending}}),
+	    #"Filtered Rows1" = Table.SelectRows(#"Sorted Rows", each [Rank] <= 100)
+	in
+	    #"Filtered Rows1"
