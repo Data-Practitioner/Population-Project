@@ -1,0 +1,128 @@
+Avg of Rural Population %
+AVERAGE('LQ_PopUrban CapitalCities'[Rural Population %])
+
+Avg of Urban Population %
+AVERAGE('LQ_PopUrban CapitalCities'[Urban Population %])
+
+Sum of Urban Population %
+SUM('LQ_PopUrban CapitalCities'[Urban Population %])
+
+Average of Urban Population %
+AVERAGE('LQ_PopUrban CapitalCities'[Urban Population %])
+
+Avg of Sex Ratio
+AVERAGE([Sex Ratio (Males/100 Females)])
+
+Sum of Total Population
+SUM('LQ_PopSurfaceArea Density'[Total Population])
+
+Sum of Male Population
+SUM('LQ_PopSurfaceArea Density'[Male Population])
+
+Sum of Female Population
+SUM('LQ_PopSurfaceArea Density'[Female Population])
+
+Sum of Male Population (Millions)
+SUM('LQ_PopSurfaceArea Density'[Male Population (Millions)])
+
+Sum of Female Population (Millions)
+SUM('LQ_PopSurfaceArea Density'[Female Population (Millions)])
+
+Sum of Male Population %
+SUM('LQ_PopSurfaceArea Density'[Male Population %])
+
+Sum of Female Population %
+SUM('LQ_PopSurfaceArea Density'[Female Population %])
+
+Average of Male Population %
+AVERAGE('LQ_PopSurfaceArea Density'[Male Population %])
+
+Average of Female Population %
+AVERAGE('LQ_PopSurfaceArea Density'[Female Population %])
+
+Sum of Male Population 2
+SUM('LQ_PopSurfaceArea Density'[Male Population])
+
+Sum of Female Population 2
+SUM('LQ_PopSurfaceArea Density'[Female Population])
+
+Sum of Total Population 2
+SUM('LQ_PopSurfaceArea Density'[Total Population])
+
+Sum of Total Population (Millions)
+SUM('LQ_PopSurfaceArea Density'[Total Population (Millions)])
+
+Avg Fertility Rate
+AVERAGE('LQ_PopFertility Mortality'[Total Fertility Rate (Children/Women)])
+
+Avg Life Expectancy
+AVERAGE([Life Expectancy (Years)])
+
+Avg Male Life Expectancy
+AVERAGE([Male Life Expectancy  (Years)])
+
+Avg Female Life Expectancy
+AVERAGE([Female Life Expectancy (Years)])
+
+Sum of Total Fertility Rate (Children/Women) 2
+SUM('LQ_PopFertility Mortality'[Total Fertility Rate (Children/Women)])
+
+Sum of International Migrants
+SUM('LQ_Migrants Refugees'[International Migrants])
+
+Sum of Total Refugees
+SUM('LQ_Migrants Refugees'[Total Refugees])
+
+Sum of Asylum Seekers
+SUM('LQ_Migrants Refugees'[Asylum Seekers])
+
+Sum of Total Refugees 2
+SUM('LQ_Migrants Refugees'[Total Refugees])
+
+Sum of Asylum Seekers 2
+SUM('LQ_Migrants Refugees'[Asylum Seekers])
+
+Sum of International Migrants (% Total Population)
+SUM('LQ_Migrants Refugees'[International Migrants (% Total Population)])
+
+Sum of International Migrants 2
+SUM('LQ_Migrants Refugees'[International Migrants])
+
+Count of Location
+COUNTA('LQ_Migrants Refugees'[Location])
+
+Sum of Total Population 3
+SUM('LQ_TotalPopBySex'[Total Population])
+
+Sum of Time
+SUM('LQ_TotalPopBySex'[Time])
+
+Sum of Births (Thousands)
+SUM('LQ_PopIndicators'[Births (Thousands)])
+
+Sum of Births
+SUM('LQ_PopIndicators'[Births])
+
+Sum of Deaths
+SUM('LQ_PopIndicators'[Deaths])
+
+Sum of Life Expectancy Rate
+SUM('LQ_PopIndicators'[Life Expectancy Rate])
+
+Average of Life Expectancy Rate
+AVERAGE('LQ_PopIndicators'[Life Expectancy Rate])
+
+Count of City
+COUNTA('LQ_MaxPopCitiesInWorld'[City])
+
+Sum of 2020 Population
+SUM('LQ_MaxPopCitiesInWorld'[2020 Population])
+
+Sum of Rank
+SUM('LQ_MaxPopCitiesInWorld'[Rank])
+
+Sum of Country Population
+SUM('LQ_MaxPopCitiesInWorld'[Country Population])
+
+Sum of % of City Population to Country
+SUM('LQ_MaxPopCitiesInWorld'[% of City Population to Country])
