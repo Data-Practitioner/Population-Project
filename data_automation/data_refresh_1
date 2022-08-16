@@ -1,0 +1,6 @@
+Sub PopUrbanAndCapitalCities_AdvanceDataFilter()
+
+    Range("LQ_PopUrban_CapitalCities[#All]").AdvancedFilter Action:=xlFilterCopy _
+    , CriteriaRange:=Range("N4:N5"), CopyToRange:=Range("P4:T4"), Unique:=False
+
+End Sub
