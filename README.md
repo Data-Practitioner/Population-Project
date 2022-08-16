@@ -122,6 +122,24 @@ All the Load Queries is loaded to Excel worksheet for reporting (raw data). Also
 
 ![image](https://user-images.githubusercontent.com/99619460/184940699-736c8dd8-2733-4419-bc7e-3512bdb99862.png)
 
+### 5. Data Analysis
 
+#### 5.1. Building Relationship
 
+The below visual shows only 4 tables are part of the data model, and others are standalone tables. The data model helps to load, retrieve, and analyze extensive amounts of data which is crucial for Excel to load quickly.
 
+![image](https://user-images.githubusercontent.com/99619460/184940913-117e3a05-c3a9-4f4b-a964-8b70ec4bf5d8.png)
+
+#### 5.2. DAX
+
+Below, measures are calculated using DAX in Power Pivot All these measures are used for building reports in the Pivot table.
+
+DAX Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_analysis/dax
+
+#### 5.3. Pivot Table
+
+All the Power Pivot sheets are loaded into Excel worksheets to build Pivot Tables.
+
+Each Power Pivot sheet corresponds to Excel worksheet which has Pivot Tables.
+
+![image](https://user-images.githubusercontent.com/99619460/184941142-68f6b770-7dcd-49b2-8e6c-8f1bce9578b7.png)
