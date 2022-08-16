@@ -81,3 +81,9 @@ Data is collected from the below sources.
 8. List of Most Populated Cities in the World - https://worldpopulationreview.com/world-cities
 
 ### 3. Data Transformation
+
+There are three steps within data cleaning which are all performed using Power Query in Excel.
+
+![image](https://user-images.githubusercontent.com/99619460/184939989-ab3f6ba3-3ecf-431c-bfce-c96f6d4a2bde.png)
+
+
