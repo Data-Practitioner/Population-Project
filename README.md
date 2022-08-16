@@ -194,8 +194,64 @@ All the dashboards are combined into one master dashboard.
 
 ![image](https://user-images.githubusercontent.com/99619460/184942483-5296f196-0b3b-43f5-907d-d8b1175d80c9.png)
 
+### Conclusion
+
+1. Rural vs. Urban Population <br>
+• World Rural Population % & World Urban Population %. <br>
+• Change showing Rural vs. Urban Population % by Region (Continent). <br>
+• Urban and rural population % by the country. <br>
+
+All the points are addressed in DB – PopUrban&CapitalCities sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184942894-e7ccf8ae-2076-4dce-b655-0e1f481c358b.png)
+
+2. Population <br>
+• Total Population, Male & Female Population, and Sex Ration (Male/100 Female). <br>
+• Population by Region (Continent). <br>
+• Top 10 most populated countries. <br>
+
+All the points are addressed in DB – PopSurfaceArea&Density sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943028-18639879-04e1-4f71-8353-2339f943fbbe.png)
+
+3. Population <br>
+• Total Population, Male & Female Population, and Sex Ration (Male/100 Female). <br>
+• Population by Region (Continent). <br>
+• Top 10 most populated countries. <br>
+
+All the points are addressed in DB – PopSurfaceArea&Density sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943149-4a27a563-f10c-4ca8-95fe-6947d120155d.png)
 
 
+4. Migration <br>
+• Total Refugees and Total Asylum Seekers.  <br>
+• Top 10 Countries – International Migration % of Population.  <br>
+
+All the points are addressed in DB – Migrants&Refugees sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943291-34308e0e-bd8f-4849-a0de-06fb693c9962.png)
+
+5. Population Timeline <br>
+• Total Population & % Difference from 2020 Population by country. <br>
+• Population data from 1950 – 2100 by country. <br>
+
+All the points are addressed in DB – TotalPopBySex sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943389-eafd9375-2751-41d1-a09a-58dd56a23cf2.png)
+
+6. Total Births & Deaths <br>
+• Chart showing side-by-side comparison of total births and deaths. <br>
+
+All the points are addressed in DB – PopIndicators sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943482-2d71f946-4293-40f4-a295-aaccf8ae20c6.png)
+
+7. % of City Population to Country.
+
+All the points are addressed in DB – MaxPopCitiesInWorld sheet.
+
+![image](https://user-images.githubusercontent.com/99619460/184943532-0ef6c3b6-c99d-406e-adeb-5822961d1710.png)
 
 
 
