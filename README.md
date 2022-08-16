@@ -86,4 +86,42 @@ There are three steps within data cleaning which are all performed using Power Q
 
 ![image](https://user-images.githubusercontent.com/99619460/184939989-ab3f6ba3-3ecf-431c-bfce-c96f6d4a2bde.png)
 
+#### 3.1. Extract Query
+
+In this section, data is extracted from all different sources. Basic transformation steps are performed such as removing columns, filtering rows, changing data types, etc.
+
+All the files are getting loaded to Power Query. Each files corresponds to Power Query name.
+
+![image](https://user-images.githubusercontent.com/99619460/184940144-8b871aa7-1d45-48bb-b2d3-e59b28f397f2.png)
+
+M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/extract_query
+
+#### 3.2. Transform Query
+
+In this section, data is extracted from all extract queries. Advance transformation steps are performed such as merging, pivoting, changing text, adding custom columns, conditional logic, etc.
+
+All Extract Queries are converted to Transform Queries to clean data. Each Extract Query corresponds to its Transform Query.
+
+![image](https://user-images.githubusercontent.com/99619460/184940417-b151f344-de9f-423e-8258-36d6e3a0495d.png)
+
+M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/transform_query
+
+#### 3.3. Load Query
+
+In this section, data is extracted from all transform queries. Additional transformation steps are performed such as merging, reorganizing columns, etc. All these queries are loaded into data model for building relationship and calculating measures.
+
+All Transform Queries are converted to Load Queries to merge and load queries into worksheet for reporting.
+
+![image](https://user-images.githubusercontent.com/99619460/184940497-d631348c-a093-4b2f-9617-88acaf81712f.png)
+
+M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/load_query
+
+### 4. Data Reporting
+
+All the Load Queries is loaded to Excel worksheet for reporting (raw data). Also, loaded to Data Model (Power Pivot sheet) to perform calculation.
+
+![image](https://user-images.githubusercontent.com/99619460/184940699-736c8dd8-2733-4419-bc7e-3512bdb99862.png)
+
+
+
 
