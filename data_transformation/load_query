@@ -1,0 +1,63 @@
+LQ_PopUrban CapitalCities
+    let
+	    Source = #"TQ_PopUrban&CapitalCities",
+	    #"Merged Queries" = Table.NestedJoin(Source, {"Location"}, LQ_UN_WorldLocation, {"Location"}, "LQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Expanded LQ_UN_WorldLocation" = Table.ExpandTableColumn(#"Merged Queries", "LQ_UN_WorldLocation", {"Sub Region", "Sub Group Region", "Region"}, {"Sub Region", "Sub Group Region", "Region"}),
+	    #"Reordered Columns" = Table.ReorderColumns(#"Expanded LQ_UN_WorldLocation",{"Year", "Region", "Sub Group Region", "Sub Region", "Location", "Urban Population %", "Rural Population %"})
+	in
+	    #"Reordered Columns"
+
+LQ_PopSurfaceArea Density
+    let
+	    Source = #"TQ_PopSurfaceArea&Density",
+	    #"Merged Queries" = Table.NestedJoin(Source, {"Location"}, LQ_UN_WorldLocation, {"Location"}, "LQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Expanded LQ_UN_WorldLocation" = Table.ExpandTableColumn(#"Merged Queries", "LQ_UN_WorldLocation", {"Sub Region", "Sub Group Region", "Region"}, {"Sub Region", "Sub Group Region", "Region"}),
+	    #"Reordered Columns" = Table.ReorderColumns(#"Expanded LQ_UN_WorldLocation",{"Year", "Region", "Sub Group Region", "Sub Region", "Location", "Total Population (Millions)", "Male Population (Millions)", "Female Population (Millions)", "Sex Ratio (Males/100 Females)", "Population Density", "Total Population", "Male Population", "Female Population"})
+	in
+	    #"Reordered Columns"
+
+LQ_PopFertility Mortality
+    let
+	    Source = #"TQ_PopFertility&Mortality",
+	    #"Merged Queries" = Table.NestedJoin(Source, {"Location"}, LQ_UN_WorldLocation, {"Location"}, "LQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Expanded LQ_UN_WorldLocation" = Table.ExpandTableColumn(#"Merged Queries", "LQ_UN_WorldLocation", {"Sub Region", "Sub Group Region", "Region"}, {"Sub Region", "Sub Group Region", "Region"}),
+	    #"Reordered Columns" = Table.ReorderColumns(#"Expanded LQ_UN_WorldLocation",{"Year", "Region", "Sub Group Region", "Sub Region", "Location", "Total Fertility Rate (Children/Women)", "Infant Mortality (Per 1000 Live Births)", "Life Expectancy (Years)", "Male Life Expectancy  (Years)", "Female Life Expectancy (Years)"})
+	in
+	    #"Reordered Columns"
+
+LQ_Migrants Refugees
+    let
+	    Source = #"TQ_Migrants&Regugees",
+	    #"Merged Queries" = Table.NestedJoin(Source, {"Location"}, LQ_UN_WorldLocation, {"Location"}, "LQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Expanded LQ_UN_WorldLocation" = Table.ExpandTableColumn(#"Merged Queries", "LQ_UN_WorldLocation", {"Sub Region", "Sub Group Region", "Region"}, {"Sub Region", "Sub Group Region", "Region"}),
+	    #"Reordered Columns" = Table.ReorderColumns(#"Expanded LQ_UN_WorldLocation",{"Year", "Region", "Sub Group Region", "Sub Region", "Location", "International Migrants", "International Migrants (% Total Population)", "Total Refugees", "Asylum Seekers"})
+	in
+	    #"Reordered Columns"
+
+LQ_TotalPopBySex
+    let
+	    Source = TQ_TotalPopBySex,
+	    #"Merged Queries" = Table.NestedJoin(Source, {"LocID"}, TQ_UN_WorldLocation, {"LocID"}, "TQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Removed Columns" = Table.RemoveColumns(#"Merged Queries",{"TQ_UN_WorldLocation"})
+	in
+	    #"Removed Columns"
+
+LQ_PopIndicators
+    let
+	    Source = TQ_PopIndicators,
+	    #"Merged Queries" = Table.NestedJoin(Source, {"LocID"}, LQ_UN_WorldLocation, {"LocID"}, "LQ_UN_WorldLocation", JoinKind.Inner),
+	    #"Removed Columns" = Table.RemoveColumns(#"Merged Queries",{"LQ_UN_WorldLocation"})
+	in
+	    #"Removed Columns"
+
+LQ_UN_WorldLocation
+    let
+	    Source = TQ_UN_WorldLocation
+	in
+	    Source
+
+LQ_MaxPopCitiesInWorld
+    let
+	    Source = TQ_MaxPopCitiesInWorld
+	in
+	    Source
