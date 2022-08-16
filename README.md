@@ -29,6 +29,30 @@ A not-for-profit organization is trying to find answers to the below question us
 • Population data from 1950 – 2100 by country. <br>
 
 6. Total Births & Deaths <br>
-Chart showing side-by-side comparison of total births and deaths. <br>
+• Chart showing side-by-side comparison of total births and deaths. <br>
 
 7. % of City Population to Country <br>
+
+### 1.2. Solution
+
+1. Data Collection <br>
+• Collect all the data from different sources. <br>
+
+2. Data Transformation <br>
+• Extract, transform, and load data using Power Query. <br>
+
+3. Data Reporting <br>
+• Load to Excel worksheet for reporting.<br>
+• Load to Data Model (Power Pivot) to perform calculations. <br>
+
+4. Data Analysis <br>
+• Build relationships, perform calculated columns, or build measures using DAX. <br>
+• Create Pivot Tables for reports. <br>
+
+5. Data Automation <br>
+• Create a macro that will refresh data. <br>
+• Create a macro that will export data into a new workbook. <br>
+
+6. Data Visualization <br>
+• Build charts, graphs, and KPIs.<br>
+• Build dashboards that consolidate all the information. <br>
