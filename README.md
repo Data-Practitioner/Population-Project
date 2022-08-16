@@ -56,3 +56,26 @@ A not-for-profit organization is trying to find answers to the below question us
 6. Data Visualization <br>
 • Build charts, graphs, and KPIs.<br>
 • Build dashboards that consolidate all the information. <br>
+
+### 1.3. Flowchart
+![image](https://user-images.githubusercontent.com/99619460/184936590-6624cd63-acc4-43fb-8d4f-85459ef08b9e.png)
+
+## 2. Data Collection
+
+Data is collected from the below sources.
+
+1. Population Growth Rate in Urban Areas & Capital Cities - https://data.un.org/ 
+
+2. Population, Surface Area and Density - https://data.un.org/
+
+3. Population Growth, Fertility and Mortality Indicators - https://data.un.org/
+
+4. International Migrants and Refugees - https://data.un.org/
+
+5. Total population by sex, annually from 1950 to 2100 - https://population.un.org/wpp/Download/Standard/CSV/
+
+6. Several indicators in 5-year periods, from 1950-1955 to 2095-2100 - https://population.un.org/wpp/Download/Standard/CSV/
+
+7. UN World Locations - https://population.un.org/wpp/Download/Metadata/Documentation/
+
+8. List of Most Populated Cities in the World - https://worldpopulationreview.com/world-cities
