@@ -1,0 +1,119 @@
+EQ_PopUrban&CapitalCities
+    let
+	  Source = Csv.DocumentFile.Contents(
+	      "SYB61_253_Population Growth Rates in Urban areas and Capital cities.csv"
+	    ),
+	    [Delimiter = ",", Columns = 9, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+	  ),
+	  #"Removed Top Rows" = Table.Skip(Source, 1),
+	  #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars = true]),
+	  #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"Location", "Year", "Series", "Value"}),
+	  #"Changed Type" = Table.TransformColumnTypes(
+	    #"Removed Other Columns",
+	    {{"Year", Int64.Type}, {"Value", type number}}
+	  ),
+	  #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Year] = 2018)
+	in
+	  #"Filtered Rows"
+
+EQ_PopSurfaceArea&Density
+    let
+	  Source = Csv.Document(
+	    File.Contents(
+	      "SYB64_1_202110_Population, Surface Area and Density.csv"
+	    ),
+	    [Delimiter = ",", Columns = 7, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+	  ),
+	  #"Removed Top Rows" = Table.Skip(Source, 1),
+	  #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars = true]),
+	  #"Removed Other Columns" = Table.SelectColumns(
+	    #"Promoted Headers",
+	    {"Location", "Year", "Series", "Value"}
+	  ),
+	  #"Changed Type" = Table.TransformColumnTypes(
+	    #"Removed Other Columns",
+	    {{"Year", Int64.Type}, {"Value", type number}}
+	  ),
+	  #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Year] = 2019)
+	in
+	  #"Filtered Rows"
+
+EQ_PopFertility&Mortality
+    let
+	  Source = Csv.Document(
+	    File.Contents(
+	      "C:\Users\mak01\Desktop\Mihir\Website\Courses\Excel\Course Files\Capstone Project\Raw Data\SYB64_246_202110_Population Growth, Fertility and Mortality Indicators.csv"
+	    ),
+	    [Delimiter = ",", Columns = 7, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+	  ),
+	  #"Removed Top Rows" = Table.Skip(Source, 1),
+	  #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars = true]),
+	  #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"Location", "Year", "Series", "Value"}),
+	  #"Changed Type" = Table.TransformColumnTypes(
+	    #"Removed Other Columns",
+	    {{"Value", type number}, {"Year", Int64.Type}}
+	  ),
+	  #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Year] = 2020)
+	in
+	  #"Filtered Rows"
+
+EQ_Migrants&Regugees
+    let
+	  Source = Csv.Document(
+	    File.Contents(
+	      "SYB64_327_202110_International Migrants and Refugees.csv"
+	    ),
+	    [Delimiter = ",", Columns = 7, Encoding = 1252, QuoteStyle = QuoteStyle.None]
+	  ),
+	  #"Removed Top Rows" = Table.Skip(Source, 1),
+	  #"Promoted Headers" = Table.PromoteHeaders(#"Removed Top Rows", [PromoteAllScalars = true]),
+	  #"Removed Other Columns" = Table.SelectColumns(#"Promoted Headers",{"Location", "Year", "Series", "Value"}),
+	  #"Changed Type" = Table.TransformColumnTypes(
+	    #"Removed Other Columns",
+	    {{"Year", Int64.Type}, {"Value", type number}}
+	  ),
+	  #"Filtered Rows" = Table.SelectRows(#"Changed Type", each [Year] = 2020)
+	in
+	  #"Filtered Rows"
+
+EQ_TotalPopBySex
+    let
+	    Source = Csv.Document(File.Contents("WPP2019_TotalPopulationBySex.csv"),[Delimiter=",", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+	    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocID", Int64.Type}, {"Location", type text}, {"VarID", Int64.Type}, {"Variant", type text}, {"Time", Int64.Type}, {"MidPeriod", type number}, {"PopMale", type number}, {"PopFemale", type number}, {"PopTotal", type number}, {"PopDensity", type number}}),
+	    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each ([Variant] = "Medium")),
+	    #"Removed Other Columns" = Table.SelectColumns(#"Filtered Rows",{"LocID", "Location", "Time", "PopMale", "PopFemale", "PopTotal", "PopDensity"})
+	in
+	    #"Removed Other Columns"
+
+EQ_PopIndicators
+    let
+	    Source = Csv.Document(File.Contents("WPP2019_Period_Indicators_Medium.csv"),[Delimiter=",", Columns=25, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+	    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"LocID", Int64.Type}, {"Location", type text}, {"VarID", Int64.Type}, {"Variant", type text}, {"Time", type text}, {"MidPeriod", Int64.Type}, {"TFR", type number}, {"NRR", type number}, {"CBR", type number}, {"Births", type number}, {"LEx", type number}, {"LExMale", type number}, {"LExFemale", type number}, {"IMR", type number}, {"Q5", type number}, {"CDR", type number}, {"Deaths", type number}, {"DeathsMale", type number}, {"DeathsFemale", type number}, {"CNMR", type number}, {"NetMigrations", type number}, {"GrowthRate", type number}, {"NatIncr", type number}, {"SRB", type number}, {"MAC", type number}}),
+	    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"LocID", "Location", "Time", "MidPeriod", "TFR", "Births", "LEx", "LExMale", "LExFemale", "Deaths", "DeathsMale", "DeathsFemale"})
+	in
+	    #"Removed Other Columns"
+
+EQ_UN_WorldLocation
+    let
+	    Source = Excel.Workbook(File.Contents("WPP2019_F01_LOCATIONS.xlsx"), null, true),
+	    DB_Sheet = Source{[Item="DB",Kind="Sheet"]}[Data],
+	    #"Promoted Headers" = Table.PromoteHeaders(DB_Sheet, [PromoteAllScalars=true]),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Index", Int64.Type}, {"Location", type text}, {"Notes", type any}, {"LocID", Int64.Type}, {"ISO3_Code", type text}, {"LocType", Int64.Type}, {"LocTypeName", type text}, {"ParentID", Int64.Type}, {"WorldID", Int64.Type}, {"SubRegID", Int64.Type}, {"SubRegName", type text}, {"SDGSubRegID", type any}, {"SDGSubRegName", type any}, {"SDGRegID", Int64.Type}, {"SDGRegName", type text}, {"GeoRegID", Int64.Type}, {"GeoRegName", type text}}),
+	    #"Removed Other Columns" = Table.SelectColumns(#"Changed Type",{"Location", "LocID", "ISO3_Code", "SubRegName", "SDGRegName", "GeoRegName"}),
+	    #"Filtered Rows" = Table.SelectRows(#"Removed Other Columns", each ([GeoRegName] <> null)),
+	    #"Renamed Columns" = Table.RenameColumns(#"Filtered Rows",{{"SubRegName", "Sub Region"}, {"SDGRegName", "Sub Group Region"}, {"GeoRegName", "Region"}})
+	in
+	    #"Renamed Columns"
+
+EQ_MaxPopCitiesInWorld
+    let
+	    Source = Json.Document(File.Contents("List of Populated Cities in the World.json")),
+	    #"Converted to Table" = Table.FromList(Source, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+	    #"Expanded Column1" = Table.ExpandRecordColumn(#"Converted to Table", "Column1", {"rank", "Name", "Country", "Population", "Prev", "Growth"}, {"rank", "Name", "Country", "Population", "Prev", "Growth"}),
+	    #"Removed Other Columns" = Table.SelectColumns(#"Expanded Column1",{"rank", "Name", "Country", "Prev"}),
+	    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"Prev", "2020 Population"},{"rank", "Rank"}}),
+	    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"Rank", Int64.Type}, {"Name", type text}, {"Country", type text}, {"2020 Population", Int64.Type}})
+	in
+	    #"Changed Type"
