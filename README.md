@@ -60,7 +60,22 @@ A not-for-profit organization is trying to find answers to the below question us
 • Build dashboards that consolidate all the information. <br>
 
 ### 1.3. Flowchart
+
 ![image](https://user-images.githubusercontent.com/99619460/184936590-6624cd63-acc4-43fb-8d4f-85459ef08b9e.png)
+
+### 1.4. Tools
+Microsoft Excel <br>
+• VBA <br>
+• Power Query/M Language <br>
+• DAX <br>
+• Power Pivot <br>
+
+### 1.5. Technical Skills
+Data Analysis <br>
+Data Transformation <br>
+Data Automation <br>
+Data Reporting <br>
+Data Visualization <br>
 
 ## 2. Data Collection
 
@@ -82,13 +97,13 @@ Data is collected from the below sources.
 
 8. List of Most Populated Cities in the World - https://worldpopulationreview.com/world-cities
 
-### 3. Data Transformation
+## 3. Data Transformation
 
 There are three steps within data cleaning which are all performed using Power Query in Excel.
 
 ![image](https://user-images.githubusercontent.com/99619460/184939989-ab3f6ba3-3ecf-431c-bfce-c96f6d4a2bde.png)
 
-#### 3.1. Extract Query
+### 3.1. Extract Query
 
 In this section, data is extracted from all different sources. Basic transformation steps are performed such as removing columns, filtering rows, changing data types, etc.
 
@@ -98,7 +113,7 @@ All the files are getting loaded to Power Query. Each files corresponds to Power
 
 M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/extract_query
 
-#### 3.2. Transform Query
+### 3.2. Transform Query
 
 In this section, data is extracted from all extract queries. Advance transformation steps are performed such as merging, pivoting, changing text, adding custom columns, conditional logic, etc.
 
@@ -108,7 +123,7 @@ All Extract Queries are converted to Transform Queries to clean data. Each Extra
 
 M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/transform_query
 
-#### 3.3. Load Query
+### 3.3. Load Query
 
 In this section, data is extracted from all transform queries. Additional transformation steps are performed such as merging, reorganizing columns, etc. All these queries are loaded into data model for building relationship and calculating measures.
 
@@ -118,27 +133,27 @@ All Transform Queries are converted to Load Queries to merge and load queries in
 
 M Script - https://github.com/Data-Practitioner/Population-Project/blob/main/data_transformation/load_query
 
-### 4. Data Reporting
+## 4. Data Reporting
 
 All the Load Queries is loaded to Excel worksheet for reporting (raw data). Also, loaded to Data Model (Power Pivot sheet) to perform calculation.
 
 ![image](https://user-images.githubusercontent.com/99619460/184940699-736c8dd8-2733-4419-bc7e-3512bdb99862.png)
 
-### 5. Data Analysis
+## 5. Data Analysis
 
-#### 5.1. Building Relationship
+### 5.1. Building Relationship
 
 The below visual shows only 4 tables are part of the data model, and others are standalone tables. The data model helps to load, retrieve, and analyze extensive amounts of data which is crucial for Excel to load quickly.
 
 ![image](https://user-images.githubusercontent.com/99619460/184940913-117e3a05-c3a9-4f4b-a964-8b70ec4bf5d8.png)
 
-#### 5.2. DAX
+### 5.2. DAX
 
 Below, measures are calculated using DAX in Power Pivot All these measures are used for building reports in the Pivot table.
 
 DAX Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_analysis/dax
 
-#### 5.3. Pivot Table
+### 5.3. Pivot Table
 
 All the Power Pivot sheets are loaded into Excel worksheets to build Pivot Tables.
 
@@ -146,11 +161,11 @@ Each Power Pivot sheet corresponds to Excel worksheet which has Pivot Tables.
 
 ![image](https://user-images.githubusercontent.com/99619460/184941142-68f6b770-7dcd-49b2-8e6c-8f1bce9578b7.png)
 
-### 6. Data Automation
+## 6. Data Automation
 
 Using VBA, data will refresh and exported into a new workbook. 
 
-#### 6.1. Data Refresh 
+### 6.1. Data Refresh 
 
 **Example 1**
 
@@ -168,7 +183,7 @@ The macro in the below screenshot will refresh data based on the country that is
 
 VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_refresh_2
 
-#### 6.2. Data Export 
+### 6.2. Data Export 
 
 **Example 1**
 
@@ -186,7 +201,7 @@ The macro in the below screenshot will export data into new workbook.
 
 VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_export_2
 
-### 7. Data Visualization
+## 7. Data Visualization
 
 All the Pivot Table and raw data in the worksheet is transformed into charts, graphs,and KPI’s to build dashboard.
 
@@ -196,7 +211,7 @@ All the dashboards are combined into one master dashboard.
 
 ![image](https://user-images.githubusercontent.com/99619460/184942483-5296f196-0b3b-43f5-907d-d8b1175d80c9.png)
 
-### Conclusion
+## Conclusion
 
 1. Rural vs. Urban Population <br>
 • World Rural Population % & World Urban Population %. <br>
