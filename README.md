@@ -166,4 +166,36 @@ The macro in the below screenshot will refresh data based on the country that is
 
 VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_refresh_2
 
+#### 6.2. Data Export 
+
+**Example 1**
+
+The macro in the below screenshot will export data into new workbook.
+
+![image](https://user-images.githubusercontent.com/99619460/184942136-e35c7fb8-bc6c-489d-b5eb-09a51d5cc9a6.png)
+
+VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_export_1
+
+**Example 2**
+
+The macro in the below screenshot will export data into new workbook.
+
+![image](https://user-images.githubusercontent.com/99619460/184942216-73b7a332-771f-4b6d-a6d6-b0ca56891df6.png)
+
+VBA Code - https://github.com/Data-Practitioner/Population-Project/blob/main/data_automation/data_export_2
+
+### 7. Data Visualization
+
+All the Pivot Table and raw data in the worksheet is transformed into charts, graphs,and KPI’s to build dashboard.
+
+![image](https://user-images.githubusercontent.com/99619460/184942401-3fe282e2-47a6-4901-927e-e7e986efa6c3.png)
+
+All the dashboards are combined into one master dashboard.
+
+![image](https://user-images.githubusercontent.com/99619460/184942483-5296f196-0b3b-43f5-907d-d8b1175d80c9.png)
+
+
+
+
+
 
